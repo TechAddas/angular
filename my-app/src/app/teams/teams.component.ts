@@ -1,24 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Teams } from '../teams';
 import { Teams_list } from '../mock-teams';
-
+import { TeamService } from '../team.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
-export class TeamsComponent {
 
-  public teams_list = Teams_list
-  public teams:Teams ={
-    id:1,
-    name:"DevOps"
+export class TeamsComponent implements OnInit {
+  public selectedTeams?: Teams;
+  public team:Teams[] = []
+
+  constructor(private teamsService: TeamService , private messageService: MessageService) {}
+
+  ngOnInit(): void {
+    this.getTeams();
   }
 
-  public selectedTeams?: Teams;
+
+
+  getTeams(): void {
+   this.teamsService.getTeams().subscribe(team => this.team = team);
+  }
 
   onSelect(teams: Teams): void {
   this.selectedTeams = teams;
+  this.messageService.add(`TeamsComponent: Selected team id=${teams.id}`);
 }
 }

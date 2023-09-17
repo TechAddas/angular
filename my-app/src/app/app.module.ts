@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TeamsComponent } from './teams/teams.component';
 import { FormsModule } from '@angular/forms';
-import { TeamDetailComponent } from './team-detail/team-detail.component'; // <-- NgModel lives here
+import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
 
 @NgModule({
   declarations: [
     AppComponent,
     TeamsComponent,
-    TeamDetailComponent
+    TeamDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
